@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <link rel="stylesheet" href="/static/Menu.css">
+
+</head>
+<body>
+
+    <header class="header" >
+        <nav class="navbar">
+            <a href=Coffee_shop>Home</a>
+            <a href=Menu>Menu</a>
+            <a href=Login>Login</a>
+            <a href=About>About</a>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="menu" id="Hot_Drinks">
+
+    <h1 class="heading"> Hot <span>Drinks</span> </h1>
+
+    <div class="box-container">
+        {% for row,name in data %}
+            <div class="box">
+                <img src="{{url_for('send_image____', filename = name)}}" alt="">
+                <h3>{{row[0]}}</h3>
+                <div CLASS="price">{{row[1]}} ₪ - <span>{{row[3]}} ₪</span></div>
+            </div>
+        {% endfor %}
+    </div>
+    </section>
+
+    <section class="menu" id="Soft_Drinks">
+
+    <h1 class="heading"> Soft <span>Drinks</span> </h1>
+
+    <div class="box-container">
+        {% for row,name in data1 %}
+        <div class="box">
+            <img src="{{url_for('send_image_____', filename = name)}}" alt="">
+            <h3>{{row[0]}}</h3>
+            <div CLASS="price">{{row[1]}} ₪ - <span>{{row[3]}} ₪</span></div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+
+    <section class="menu" id="Meals">
+
+    <h1 class="heading"><span>Meals</span> </h1>
+
+    <div class="box-container">
+        {% for row,name in data2 %}
+        <div class="box">
+            <img src="{{url_for('send_image______', filename = name)}}" alt="">
+            <h3>{{row[0]}}</h3>
+            <div CLASS="price">{{row[1]}} ₪ - <span>{{row[3]}} ₪</span></div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+
+    <section class="menu" id="Snacks">
+
+    <h1 class="heading">Snacks<span></span> </h1>
+
+    <div class="box-container">
+        {% for row,name in data3 %}
+        <div class="box">
+            <img src="{{url_for('send_image_______', filename = name)}}" alt="">
+            <h3>{{row[0]}}</h3>
+            <div CLASS="price">{{row[1]}} ₪ - <span>{{row[3]}} ₪</span></div>
+        </div>
+        {% endfor %}
+    </div>
+    </section>
+</body>
+</html>

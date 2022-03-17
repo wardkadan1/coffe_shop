@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" href="/static/style_login.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header" >
+        <nav class="navbar">
+            <a href=Coffee_shop>Home</a>
+            <a href=Menu>Menu</a>
+            <a href=Login>Login</a>
+            <a href=About>About</a>
+        </nav>
+    </header>
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form action=Login method="post">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="first_name" id="first_name" placeholder="First name" required="" autocomplete="off">
+					<input type="text" name="last_name" id="last_name" placeholder="Last name" required="" autocomplete="off">
+					<input type="email" name="email_" id="email_" placeholder="Email" required="" autocomplete="off">
+					<input type="password" name="pswd_" id="pswd_" placeholder="Password" required="" autocomplete="off">
+					<button type="submit" name="sign_up" value="sign_up">Sign up</button>
+				</form>
+				<div class="message">
+				{% if message_ %}
+					<p>{{ message_ }}</p>
+				{% endif %}
+				</div>
+			</div>
+
+			<div class="login">
+				<form action=Login method="post">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" id="email" placeholder="Email" required="" autocomplete="off">
+					<input type="password" name="pswd" id="pswd" placeholder="Password" required="" autocomplete="off">
+					<button type="submit" name="login" value="login">Login</button>
+				</form>
+				<div class="message">
+				{% if message %}
+					<p>{{ message }}</p>
+				{% endif %}
+				</div>
+			</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        select {
+        width: 185px;
+        height: 21px;
+        margin: 1px;
+        }
+        select:focus {
+            min-width: 185px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <table class="table">
+       <tr>
+           {% for header in headings %}
+           <th>{{ header }}</th>
+           {% endfor %}
+       </tr>
+        {% for row in data %}
+        <tr>
+            {% for x in row %}
+            <td>{{ x }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="form">
+        <form action=Take_order method="POST" class="form">
+            <select name="sel1" id="sel1" onchange="giveSelection(this.value)">
+                <option value="" disabled selected>Select your option</option>
+                <option value="Hot_Drinks">Hot Drinks</option>
+                <option value="Soft_Drinks">Soft Drinks</option>
+                <option value="Meals">Meals</option>
+                <option value="Snacks">Snacks</option>
+            </select>
+            <select name="sel2" id="sel2">
+                {% for x in data1 %}
+                    <option data-option="Hot_Drinks" value="{{x[0]}}">{{x[0]}}</option>
+                {% endfor %}
+                {% for x in data2 %}
+                    <option data-option="Soft_Drinks" value="{{x[0]}}">{{x[0]}}</option>
+                {% endfor %}
+                {% for x in data3 %}
+                    <option data-option="Meals" value="{{x[0]}}">{{x[0]}}</option>
+                {% endfor %}
+                {% for x in data4 %}
+                    <option data-option="Snacks" value="{{x[0]}}">{{x[0]}}</option>
+                {% endfor %}
+            </select>
+            <script>
+                var sel1 = document.querySelector('#sel1');
+                var sel2 = document.querySelector('#sel2');
+                var options2 = sel2.querySelectorAll('option');
+
+                function giveSelection(selValue) {
+                  sel2.innerHTML = '';
+                  for(var i = 0; i < options2.length; i++) {
+                    if(options2[i].dataset.option === selValue) {
+                      sel2.appendChild(options2[i]);
+                    }
+                  }
+                }
+                giveSelection(sel1.value);
+            </script>
+            <label for="amount"></label><input type="number" name="amount" id="amount" placeholder="Amount">
+            <label>
+                <input list="size" name="size" placeholder="Size">
+            </label>
+            <datalist id="size">
+                <option value="S">
+                <option value="M">
+                <option value="L">
+            </datalist>
+            <p>
+                <button type="submit" name="Add" value="Add"> Add </button>
+                <button type="submit" name="Delete" value="Delete"> Delete </button>
+                <button type="submit" name="Update" value="Update"> Update </button>
+                <button type="submit" name="confirm" value="confirm"> Confirm </button>
+            </p>
+        </form>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

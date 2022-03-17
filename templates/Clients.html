@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    	<link rel="stylesheet" href="/static/About.css"/>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        th {
+            text-align: left;
+        }
+        input{
+            position: center;
+        }
+        .form {
+            text-align: center;
+            margin-top: 25px;
+        }
+        button{
+            width: 90px;
+        }
+        .d{
+            width: 250px;
+        }
+        .c{
+            width: 150px;
+        }
+    </style>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+
+        setTimeout("preventBack()", 0);
+
+        window.onunload = function () { null };
+    </script>
+</head>
+<body>
+    <header class="header" >
+        <nav class="navbar">
+            <a href=Clients>Home</a>
+            <a href=Menu_>Menu</a>
+            <a href=About_>About</a>
+            <a href=Coffee_shop>Logout</a>
+        </nav>
+    </header>
+
+    <div class="container">
+	<table>
+        <thead>
+            <tr>
+                {% for header in headings %}
+                   <th>{{ header }}</th>
+                {% endfor %}
+           </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for x in row %}
+                        <td>{{ x }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+		</tbody>
+	</table>
+        <br>
+        <form action=Login method="POST">
+            <label for="table"></label><input type="number" name="table" id="table" placeholder="Reserve Table for 50₪" autocomplete="off">
+            <button type="submit" name="take_table" id="take_table">Reserve</button>
+            <label class="d">
+                <input class="d" list="vip" name="vip" placeholder="Vip Membership-1y for 200₪" autocomplete="off">
+            </label>
+            <datalist id="vip">
+                <option value="Vip">
+            </datalist>
+            <button class="c" type="submit" name="vip_" id="vip_">Vip Payment</button>
+        </form>
+        <div class="message">
+            {% if message__ %}
+            <p>{{ message__ }}</p>
+            {% endif %}
+        </div>
+        <div class="message">
+            {% if message___ %}
+            <p>{{ message___ }}</p>
+            {% endif %}
+        </div>
+</div>
+
+</body>
+</html>

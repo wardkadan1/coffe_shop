@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="/static/styles.css"/>
+
+</head>
+<style>
+    div {
+        position: center;
+        background-color: rgba(211, 211, 211, 0.99);
+        width: 300px;
+        border: 25px solid rgba(0, 113, 128, 0.98);
+        padding: 50px;
+        margin: 20px;
+    }
+    span{
+        float: left;
+    }
+    input{
+        float: right;
+    }
+</style>
+<body>
+    <div>
+        <form action=Take_order class="form" method="post">
+            <span>Card Number</span>
+            <label for="card_number"></label><input type="text" maxlength="16" name="card_number" id="card_number">
+            <br>
+            <br>
+            <span>Card Holder</span>
+            <label for="card_holder"></label><input type="text" name="card_holder" id="card_holder">
+            <br>
+            <br>
+            <span>Expiration Date</span>
+            <label for="start"></label><input type="month" id="start" name="start"
+                                              min="2022-01" value="2022-01">
+            <br>
+            <br>
+            <span>Cvv</span>
+            <label for="cvv"></label><input type="text" name="cvv" id="cvv" maxlength="3">
+            <br>
+            <br>
+            <button type="submit" name="submit" value="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

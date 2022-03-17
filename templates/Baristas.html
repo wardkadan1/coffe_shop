@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <style>
+        div{
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        function preventBack() {
+            window.history.forward();
+        }
+
+        setTimeout("preventBack()", 0);
+
+        window.onunload = function () { null };
+    </script>
+</head>
+<body>
+    <form action=Take_order method="POST" class="form">
+        <label for="email"></label><input type="text" name="email" id="email" placeholder="Email" autocomplete="off">
+        <label for="table"></label><input type="number" name="table" id="table" placeholder="Number of tabel">
+        <button type="submit" name="Start_order" value="Start_order"> Start / Change Order </button>
+        <br>
+        <br>
+        <label>
+            <input list="payment1" name="payment" placeholder="Payment" autocomplete="off">
+        </label>
+        <datalist id="payment1">
+            <option value="Cash">
+            <option value="Credit Card">
+        </datalist>
+        <button type="submit" name="Done" value="Done"> Done </button>
+        <a href= Login><button type="button">Logout</button></a>
+    </form>
+    <div>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+    <table class="table">
+       <tr>
+           {% for header in headings %}
+           <th>{{ header }}</th>
+           {% endfor %}
+       </tr>
+        <br>
+        {% for row,y in data %}
+        <tr>
+            {% if y[2] == 1 %}
+                <th rowspan="{{y[1]}}">{{y[0]}}</th>
+            {% endif %}
+            {% for x in row %}
+            <td>{{ x }}</td>
+            {% endfor %}
+            {% if y[2] == 1 %}
+                <th rowspan="{{y[1]}}">{{y[3]}}</th>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

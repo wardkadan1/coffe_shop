@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        .gfg {
+            width:auto;
+            text-align:center;
+            padding:20px;
+        }
+        img {
+            max-width:100%;
+            height:auto;
+        }
+    </style>
+</head>
+<body>
+    <table class="table">
+       <tr>
+           {% for header in headings %}
+           <th>{{ header }}</th>
+           {% endfor %}
+       </tr>
+        {% for row,name in data %}
+        <tr>
+            {% for x in row %}
+                <td>{{x}}</td>
+            {% endfor %}
+            <td><img class="image" src="{{url_for('send_image_Meals', filename = name)}}"></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <div class="form">
+        <form action=Meals_data method="POST" class="form" enctype = "multipart/form-data">
+            <label for="name"></label><input type="text" name="name" id="name" placeholder="Name" autocomplete="off">
+            <label for="price-s"></label><input type="number" name="price-s" id="price-s" placeholder="S-Price" autocomplete="off">
+            <label for="price-m"></label><input type="number" name="price-m" id="price-m" placeholder="M-Price" autocomplete="off">
+            <label for="price-l"></label><input type="number" name="price-l" id="price-l" placeholder="L-Price" autocomplete="off">
+            <label for="image"></label><input type="file" name="image" id="image" autocomplete="off">
+            <p>
+                <button type="submit" name="Add" value="Add"> Add </button>
+                <button type="submit" name="Delete" value="Delete"> Delete </button>
+                <button type="submit" name="Update" value="Update"> Update Price </button>
+                <button type="submit" name="Back" value="Back"> Back </button>
+            </p>
+        </form>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

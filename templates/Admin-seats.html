@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <style>
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+          -moz-appearance: textfield;
+        }
+        .other {background-color: #e7e7e7; color: black;}
+    </style>
+</head>
+<body>
+    <table class="table">
+       <tr>
+           {% for header in headings %}
+           <th>{{ header }}</th>
+           {% endfor %}
+       </tr>
+        {% for row in data %}
+        <tr>
+            {% for x in row %}
+            <td>{{ x }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="form">
+        <form action=seats_data method="POST" class="form">
+            <label for="num"></label><input type="number" name="num" id="num" placeholder="Number of tabel">
+            <label for="seats"></label><input type="number" name="seats" id="seats" placeholder="Number of seats">
+            <label>
+                <input list="location1" name="location" placeholder="Location" autocomplete="off">
+            </label>
+            <datalist id="location1">
+                <option value="Outside">
+                <option value="Floor 1">
+                <option value="Floor 2">
+            </datalist>
+            <label>
+                <input list="vip1" name="vip" placeholder="Vip">
+            </label>
+            <datalist id="vip1">
+                <option value="Yes">
+                <option value="No">
+            </datalist>
+            <button type="submit" name="Add" value="Add"> Add </button>
+            <button type="submit" name="Delete" value="Delete"> Delete </button>
+            <button type="submit" name="Update" value="Update"> Update </button>
+            <button type="submit" name="Back" value="Back"> Back </button>
+            <p>
+                <span value="{{data1[0][0]}}" class="other">Vip-Sale: {{data1[0][0]}}%</span>
+                <label for="sale"></label><input type="number" name="sale" id="sale" placeholder="Update Vip-Sale">
+                <button type="submit" name="Update-sale" value="Update-sale"> Update Vip-Sale </button>
+            </p>
+        </form>
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
